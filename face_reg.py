@@ -28,7 +28,7 @@ def face_reg():
         for (x,y,w,h) in face_rects:
             roi_gray = gray[y:y+h, x:x+w]
             id, confidence = recognizer.predict(roi_gray)
-            cv2.rectangle(frame, (x,y), (x+w,y+h), (255, 172, 189), 3)
+            cv2.rectangle(frame, (x,y), (x+w,y+h), (128,255,255), 3)
             
             connection = sqlite3.connect("Person.db")
             cursor = connection.cursor() 
@@ -38,7 +38,7 @@ def face_reg():
             connection.close()
             
             text = f'{name}'
-            cv2.putText(frame, text, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 172, 189), 2)
+            cv2.putText(frame, text, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0,193,255), 2)
         cv2.imshow('Face Detector', frame)
         c = cv2.waitKey(1)
         if c == 27:
